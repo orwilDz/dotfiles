@@ -1,0 +1,5 @@
+require('orwil.options')
+require('orwil.remap')
+require('orwil.keymap')
+require('orwil.lazy')
+require('orwil.lsp_config')
