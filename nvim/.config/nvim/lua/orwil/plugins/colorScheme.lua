@@ -1,53 +1,52 @@
 return {
-	{ 
-		"catppuccin/nvim",
-		name = "catppuccin",
-		priority = 1000,
-		config = function() 
-			vim.cmd.colorscheme "catppuccin-nvim"
-            vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#585b70", bold = true })
-        end
-	},
-	{
-		"xiyaowong/transparent.nvim",
-		lazy = false, --this was SUPER IMPORTANT
-		config = function()
-			local tr = require("transparent")
-            tr.setup({ -- Optional, you don't have to run setup.
-				groups = {           -- table: default groups
-					"Normal",
-					"NormalNC",
-					"Comment",
-					"Constant",
-					"Special",
-					"Identifier",
-					"Statement",
-					"PreProc",
-					"Type",
-					"Underlined",
-					"Todo",
-					"String",
-					"Function",
-					"Conditional",
-					"Repeat",
-					"Operator",
-					"Structure",
-					"LineNr",
-					"NonText",
-					"SignColumn",
-					"CursorLine",
-					"CursorLineNr",
-					"StatusLine",
-					"StatusLineNC",
-					"EndOfBuffer",
-				},
-				extra_groups = {
-					"NvimTreeNormal", -- NvimTree
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        priority = 1000,
+        config = function()
+            require("catppuccin").setup({
+                transparent_background = true, -- 🔥 important
+            })
 
-				},
-                exclude_groups = {
+            vim.cmd.colorscheme("catppuccin")
+
+            -- ⚡ DELAY pour override tous les plugins
+            vim.schedule(function()
+                -- GLOBAL
+                vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+                vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+
+                -- NVIM TREE
+                vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "none" })
+                vim.api.nvim_set_hl(0, "NvimTreeNormalNC", { bg = "none" })
+                vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { bg = "none" })
+                vim.api.nvim_set_hl(0, "NvimTreeWinSeparator", { bg = "none" })
+                vim.api.nvim_set_hl(0, "NvimTreeStatusLine", { bg = "none" })
+                vim.api.nvim_set_hl(0, "NvimTreeStatusLineNC", { bg = "none" })
+                vim.api.nvim_set_hl(0, "NvimTreeVertSplit", { bg = "none" })
+
+                -- BUFFERLINE 🔥 (le vrai fix est là)
+                vim.api.nvim_set_hl(0, "BufferLineFill", { bg = "none" })
+                vim.api.nvim_set_hl(0, "BufferLineBackground", { bg = "none" })
+                vim.api.nvim_set_hl(0, "BufferLineTab", { bg = "none" })
+                vim.api.nvim_set_hl(0, "BufferLineTabSelected", { bg = "none" })
+            end)
+        end,
+    },
+
+    {
+        "xiyaowong/transparent.nvim",
+        lazy = false,
+        config = function()
+            require("transparent").setup({
+                extra_groups = {
+                    "NvimTreeNormal",
+                    "NvimTreeNormalNC",
+                    "NvimTreeEndOfBuffer",
+                    "BufferLineFill",
+                    "BufferLineBackground",
                 },
-			})
-		end,
-	}
+            })
+        end,
+    },
 }
