@@ -1,141 +1,133 @@
-@import "mocha.css"; 
-
+/* ==========================================
+   WAYBAR STYLE.CSS - Catppuccin Inspired
+   ========================================== */
 * {
-    font-family: "MesloLGS Nerd Font Mono Bold";
-    font-size: 16px;
-    min-height: 0;
-    font-weight: bold;
-}
-
-window#waybar {
-    background: transparent;
-    background-color: @crust;
-    color: @overlay0;
-    transition-property: background-color;
-    transition-duration: 0.1s;
-    border-bottom: 1px solid @overlay1;
-}
-
-#window {
-    margin: 8px;
-    padding-left: 8px;
-    padding-right: 8px;
-}
-
-button {
-    box-shadow: inset 0 -3px transparent;
     border: none;
     border-radius: 0;
+    font-family: "JetBrains Mono", "Noto Sans", "DejaVu Sans", sans-serif;
+    font-size: 13px; /* Correspond à size='13000' de Pango */
+    min-height: 0;
 }
 
-button:hover {
-    background: inherit;
-    color: @mauve;
-    border-top: 2px solid @mauve;
+/* Barre principale */
+window#waybar {
+    background: rgba(30, 30, 46, 0.85);
+    color: #cdd6f4;
+    border-radius: 12px;
+    transition: background 0.3s ease;
 }
 
+/* Espacement global des modules */
+#workspaces, #window, #network, #pulseaudio, #battery, #clock,
+#custom-software, #custom-settings {
+    margin: 6px 4px;
+    padding: 0 10px;
+    background: transparent;
+
+}
+
+/* --- WORKSPACES --- */
+#workspaces {
+    margin-left: 8px;
+}
 #workspaces button {
-    padding: 0 4px;
+    padding: 4px 8px;
+    margin: 0 2px;
+    background: transparent;
+    color: #a6adc8;
+    border-radius: 6px;
+    transition: all 0.2s ease;
 }
-
-#workspaces button.focused {
-    background-color: rgba(0, 0, 0, 0.3);
-    color: @rosewater;
-    border-top: 2px solid @rosewater;
+#workspaces button:hover {
+    background: rgba(245, 194, 231, 0.2);
+    color: #f5c2e7;
 }
-
 #workspaces button.active {
-    background-color: rgba(0, 0, 0, 0.3);
-    color: @mauve;
-    border-top: 2px solid @mauve;
+    background: #f5c2e7;
+    color: #1e1e2e;
+    font-weight: bold;
 }
-
 #workspaces button.urgent {
-    background-color: #eb4d4b;
+    background: #f38ba8;
+    color: #1e1e2e;
 }
 
-#pulseaudio,
-#clock,
-#battery,
-#cpu,
-#memory,
-#disk,
-#temperature,
-#backlight,
-#wireplumber,
-#tray,
-#network,
-#mode,
-#custom-settings,
-#custom-software,
-#scratchpad {
-  margin-top: 2px;
-  margin-bottom: 2px;
-  margin-left: 4px;
-  margin-right: 4px;
-  padding-left: 4px;
-  padding-right: 4px;
+/* --- FENÊTRE ACTIVE --- */
+#window {
+    font-weight: 600;
+    color: #cdd6f4;
+    padding: 0 12px;
 }
 
-#clock {
-    color: @maroon;
-    border-bottom: 2px solid @maroon;
-}
-
-#clock.date {
-    color: @mauve;
-    border-bottom: 2px solid @mauve;
-}
-
-#pulseaudio {
-    color: @blue;
-    border-bottom: 2px solid @blue;
-}
-
+/* --- RÉSEAU --- */
 #network {
-    color: @yellow;
-    border-bottom: 2px solid @yellow;
+    color: #f5e0dc;
+    padding-left: 14px;
+    padding-right: 14px;
+}
+#network.disconnected {
+    color: #f38ba8;
 }
 
-#idle_inhibitor {
-    margin-right: 12px;
-    color: #7cb342;
+/* --- AUDIO --- */
+#pulseaudio {
+    color: #89b4fa;
+    padding-left: 14px;
+    padding-right: 14px;
+}
+#pulseaudio.muted {
+    color: #f38ba8;
 }
 
-#idle_inhibitor.activated {
-    color: @red;
-}
-
+/* --- BATTERIE --- */
 #battery {
-    color: @green;
-    border-bottom: 2px solid @green;
+    color: #a6e3a1;
+    padding-left: 14px;
+    padding-right: 14px;
 }
-#custom-software{
-    font-size: 18px;
-    padding-left: 10px;
-    padding-right: 10px;
-border-bottom: 2px solid #f9e2af;
+#battery.warning   { color: #B1E3AD; }
+#battery.critical  { color: #E38C8F; }
+#battery.charging,
+#battery.plugged,
+#battery.full      { color: #B1E3AD; }
+
+/* --- HORLOGE --- */
+#clock {
+    color: #f5c2e7;
+    padding-left: 14px;
+    padding-right: 14px;
 }
+
+/* --- MODULES CUSTOM --- */
+#custom-software {
+    color: #f9e2af;
+    padding-left: 14px;
+    padding-right: 14px;
+}
+#custom-software:hover {
+    background: rgba(249, 226, 175, 0.15);
+    border-radius: 6px;
+}
+
 #custom-settings {
-    font-size: 18px;
-    color: white;
-    padding-left: 10px;
-    padding-right: 10px;
-border-bottom: 2px solid @white;
+    color: #cdd6f4;
+    padding-left: 14px;
+    padding-right: 14px;
+    margin-right: 8px;
 }
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left>widget:first-child>#workspaces {
-    margin-left: 0;
-}
-
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right>widget:last-child>#workspaces {
-    margin-right: 0;
+#custom-settings:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
 }
 
-#custom-vpn {
-    color: @lavender;
-    border-radius: 15px;
-    padding-left: 6px;
-    padding-right: 6px;
+/* --- INF OBULLES (Tooltips) --- */
+tooltip {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    border-radius: 8px;
+    border: 1px solid #313244;
+    padding: 8px 12px;
+}
+tooltip label {
+    font-size: 12px;
 }

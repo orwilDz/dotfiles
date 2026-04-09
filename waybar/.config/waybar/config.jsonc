@@ -1,94 +1,57 @@
 {
-	"layer": "top",
-	"position": "top",
-
-	"modules-left": [
-		"sway/workspaces",
-		"custom/right-arrow-dark"
-	],
-	"modules-center": [
-		"custom/left-arrow-dark",
-		"clock#1",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
-		"clock#2",
-		"custom/right-arrow-dark",
-		"custom/right-arrow-light",
-		"clock#3",
-		"custom/right-arrow-dark"
-	],
-	"modules-right": [
-		"custom/left-arrow-dark",
-		"pulseaudio",
-		"battery",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
-	],
-
-	"custom/left-arrow-dark": {
-		"format": "",
-		"tooltip": false
-	},
-	"custom/left-arrow-light": {
-		"format": "",
-		"tooltip": false
-	},
-	"custom/right-arrow-dark": {
-		"format": "",
-		"tooltip": false
-	},
-	"custom/right-arrow-light": {
-		"format": "",
-		"tooltip": false
-	},
-
-	"sway/workspaces": {
-		"disable-scroll": true,
-		"format": "{name}"
-	},
-
-	"clock#1": {
-		"format": "{:%a}",
-		"tooltip": false
-	},
-	"clock#2": {
-		"format": "{:%H:%M}",
-		"tooltip": false
-	},
-	"clock#3": {
-		"format": "{:%b %d}",
-		"tooltip": false
-	},
-
-	"pulseaudio": {
-		"format": "{icon} {volume:2}%",
-		"format-bluetooth": "{icon} {volume}%",
-		"format-muted": "MUTE",
-		"format-icons": {
-			"headphones": "",
-			"default": [
-				"",
-				""
-			]
-		},
-		"scroll-step": 5,
-		"on-click": "pamixer -t",
-		"on-click-right": "pavucontrol"
-	},
-	"battery": {
-		"states": {
-			"good": 90,
-			"warning": 20,
-			"critical": 10
-		},
-		"format": "{icon} {capacity}%",
-		"format-icons": [
-			"",
-			"",
-			"",
-			"",
-			""
-		]
-	},
-	
+  "position": "top",
+  "margin-top": 10,
+  "margin-left": 10,
+  "margin-right": 10,
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": ["hyprland/window"],
+  "modules-right": ["network", "pulseaudio", "battery", "clock" ,"custom/software","custom/settings"],
+  "clock": {
+    "format": "<span foreground='#f5c2e7'>   </span>{:%a %d %H:%M}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "interval": 60
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "interval": 30,
+    "format": "<span size='13000' foreground='#a6e3a1'>{icon} </span> {capacity}%",
+    "format-warning": "<span size='13000' foreground='#B1E3AD'>{icon} </span> {capacity}%",
+    "format-critical": "<span size='13000' foreground='#E38C8F'>{icon} </span> {capacity}%",
+    "format-charging": "<span size='13000' foreground='#B1E3AD'> </span>{capacity}%",
+    "format-plugged": "<span size='13000' foreground='#B1E3AD'> </span>{capacity}%",
+    "format-alt": "<span size='13000' foreground='#B1E3AD'>{icon} </span> {time}",
+    "format-full": "<span size='13000' foreground='#B1E3AD'> </span>{capacity}%",
+    "format-icons": ["", "", "", "", ""],
+    "tooltip-format": "{time}"
+  },
+  "network": {
+    "format-wifi": "<span size='13000' foreground='#f5e0dc'>  </span>{essid}",
+    "format-ethernet": "<span size='13000' foreground='#f5e0dc'>󰤭  </span> Disconnected",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "<span size='13000' foreground='#f5e0dc'>  </span>Disconnected",
+    "tooltip-format-wifi": "Signal Strenght: {signalStrength}%",
+  "interval": 5
+  },
+  "pulseaudio": {
+      "format": "{icon}  {volume}%",
+      "format-muted": "",
+      "format-icons": {
+          "default": ["", "", " "]
+      },
+      "on-click": "pavucontrol"
+  },
+    "custom/software": {
+    "format": "<span size='13000' foreground='#f9e2af'></span>",
+    "tooltip": "Gestionnaire de logiciels",
+    "on-click": "gnome-software",
+    "interval": 0
+  },
+  "custom/settings": {
+    "format": "<span ></span>",
+    "on-click": "~/.config/waybar/scripts/settings.sh",
+    "interval": 0
+  }
 }

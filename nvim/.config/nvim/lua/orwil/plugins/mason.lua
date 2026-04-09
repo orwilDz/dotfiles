@@ -4,13 +4,14 @@ return {
         opts = {
             -- list of servers for mason to install
             ensure_installed = {
-                "cssls",
-                "emmylua_ls",
                 "html",
-                "intelephense",
-                "laravel_ls",
+                "cssls",
+                "emmet_language_server.lua",
                 "tailwindcss",
                 "ts_ls",
+                "intelephense",
+                "laravel_ls",
+                "emmylua_ls",
             },
         },
         dependencies = {
